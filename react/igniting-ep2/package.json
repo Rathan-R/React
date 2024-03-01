@@ -1,0 +1,11 @@
+{
+  "name": "igniting-ep2",
+  "version": "1.0.0",
+  "description": "this is episode2",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Rathan",
+  "license": "ISC"
+}
