@@ -13,7 +13,7 @@ const heading = <h1 id="heading">This is rathan heading from jsx</h1>;
 //React functional Component
 const HeadingComponent = () => <h1>this is functional component</h1>;
 const HeadingComponent2 = () => (
-  <div>
+  /*  <div>
     <p>Element inside component</p>
     {heading}
     <p>component inside component</p>
@@ -22,6 +22,11 @@ const HeadingComponent2 = () => (
 
     {HeadingComponent()}
     <h1>this is functional component2</h1>
+  </div> */
+  <div className="header">
+    <span>logo</span>
+    <input type="text"></input>
+    <span>User Icon</span>
   </div>
 );
 
