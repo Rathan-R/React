@@ -1,0 +1,24 @@
+{
+  "name": "laying-foundation-ep3",
+  "version": "1.0.0",
+  "description": "this is episode2",   
+  "scripts": {
+    "start": "parcel home.html",
+    "build":"parcel build home.html",
+    "test": "jest"
+  },
+  "author": "Rathan",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.12.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  },
+  "browserslist":[
+    "last 2 versions"
+   
+  ]
+}
