@@ -83,6 +83,15 @@
 .res-cards:hover {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.res-cards span svg {
+  width: 20px;
+  height: 17px;
+  color: green;
+}
+.rating {
+  display: flex;
+  gap: 2px;
+}
 
 .res-logo {
   width: 100%;
@@ -96,4 +105,10 @@
   justify-content: center;
   color: white;
   background-color: rgb(45, 45, 45);
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-items {
+    display: none;
+  }
 }
