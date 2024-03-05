@@ -77,6 +77,30 @@ import MyComponent, {MyComponent2} from "./MyComponent";
 
 ## Q: What is the importance of `config.js` file?
 
+A:One purpose to add config.js file is to use static data which needs to be used all over the application.
+
+Suppose we want our BASE URL to configure for local, test and prod environment then we can create a config file with different values based on the environment we are using so our main application code will be untouched, only the base url will be changed based on environment we are working upon.
+
+- we can create "config.js" under project root directory.
+
+your_project_name > config.js
+
+- You can add static data in config.js file
+
+export const configData = {
+
+BASE_URL: "https://your-domain.com/app-url/"
+
+}
+
+- Now suppose you want to use the configData in "App.js" file under the src folder of project root directory
+
+import { configData } from "../Config";
+
+const verify_link = configData.BASE_URL + "any_custom_link";
+
+- You can import and use the 'configData' wherever required all over your application the same way.
+
 A: `config.js` files are essentially editable text files that contain information required for the successful operation of a program. The files are structured in a particular way, formatted to be user configurable.
 Most of the computer programs we use: whether office suites, web browsers, even video games are configured via menu interfaces.
 Configuration files are very simple in structure. For instance, if you were to write an application, and the only thing it ever needed to know was its user's preferred name, then its one and only config file could contain exactly one word: the name of the user. For example:
