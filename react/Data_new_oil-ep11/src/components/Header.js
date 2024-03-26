@@ -5,22 +5,19 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btn, setBtn] = useState("Login");
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
-        <h2>Driving N Dining</h2>
+    <div className="flex justify-between bg-black text-white rounded-md m-2 w-full h-16 sticky p-2">
+      <div className=" flex items-center">
+        <img className="rounded-3xl h-12 w-12 ml-1" src={LOGO_URL} />
+        <h2 className="pl-2 font-bold text-sm text-yellow-500 md:text-1xl sm:text-xl lg:2xl ">
+          Driving N Dining
+        </h2>
       </div>
       <div className="nav-items">
-        <ul>
+        <ul className="flex justify-center items-center h-full">
           <li style={{ display: "flex" }}>
             {useOnlineStatus() ? (
               <svg
-                style={{
-                  color: "lightGreen",
-                  width: "30px",
-                  height: "30px",
-                  marginTop: "-1px",
-                }}
+                className="text-green-400 w-8 h-8 mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -36,7 +33,7 @@ const Header = () => {
               </svg>
             ) : (
               <svg
-                style={{ color: "red", width: "30px", height: "30px" }}
+                className="text-red-500 w-8 h-8 mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -52,20 +49,21 @@ const Header = () => {
               </svg>
             )}
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/about">About us</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/contact">Contact us</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li>Cart</li>
+          <li className="px-2">Cart</li>
           <button
+            className="bg-blue-700 px-2 py-1 mr-2 rounded-sm"
             onClick={() => {
               btn === "Login" ? setBtn("Logout") : setBtn("Login");
             }}
