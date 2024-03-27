@@ -13,7 +13,7 @@ const Header = () => {
         </h2>
       </div>
       <div className="nav-items">
-        <ul className="flex justify-center items-center h-full">
+        <ul className="flex justify-center items-center h-full ">
           <li style={{ display: "flex" }}>
             {useOnlineStatus() ? (
               <svg
