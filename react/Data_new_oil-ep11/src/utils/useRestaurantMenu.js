@@ -7,7 +7,6 @@ const useRestaurantMenu = (rId) => {
   }, []);
 
   const fetchMenu = async () => {
-    console.log(rId);
     const api = SWIGGY_MENU_API + rId;
     const data = await fetch(api);
     console.log(data);
@@ -15,7 +14,7 @@ const useRestaurantMenu = (rId) => {
     console.log(jsonData.data);
     setResInfo(jsonData?.data);
     console.log(
-      jsonData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards
+      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards
     );
   };
   return resInfo;

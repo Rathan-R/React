@@ -1,3 +1,4 @@
+import UserContext from "../utils/UserContext";
 import User from "./User";
 import UserClass from "./UserClass";
 import React from "react";
@@ -11,12 +12,12 @@ class About extends React.Component {
   }
   componentDidMount() {
     // console.log("parent Component did mount");
-    this.timer = setInterval(() => {
-      console.log("hello");
-    }, 1000);
+    // this.timer = setInterval(() => {
+    //   console.log("hello");
+    // }, 1000);
   }
   componentWillUnmount() {
-    clearInterval(this.timer);
+    // clearInterval(this.timer);
   }
 
   render() {
@@ -25,6 +26,9 @@ class About extends React.Component {
       <div>
         <h2>About</h2>
         <p>This is about user details</p>
+        <UserContext.Consumer>
+          {(data) => <li>{data.loggedInUser}</li>}
+        </UserContext.Consumer>
         {/* <User name={"Rathan from (function)"} /> */}
         {/* <UserClass/> */}
       </div>

@@ -6,12 +6,12 @@ const RestaurantCard = (props) => {
   const { deliveryTime } = dataSet?.info?.sla;
 
   return (
-    <div className="m-4 p-4 w-60 bg-gray-100 h-[340px] rounded-lg hover:shadow-2xl hover:bg-slate-100 ">
+    <div className="m-4 p-4 w-60 bg-gray-100 rounded-lg hover:shadow-2xl hover:bg-slate-100 ">
       <img
         className="res-logo min-w-full rounded-sm h-[150px]"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h3 className="font-bold text-lg">{name}</h3>ssad
+      <h3 className="font-bold text-lg">{name}</h3>
       <p>{cuisines.slice(0, 2).join(",")}</p>
       <span className="rating flex bg-green-600 h-5 w-10 justify-center rounded-sm text-[15px] items-center">
         <span className="s-rating text-white"> {avgRating}</span>
@@ -32,5 +32,18 @@ const RestaurantCard = (props) => {
       <h5 className="text-sm text-gray-500">{deliveryTime} minutes</h5>
     </div>
   );
+};
+
+export const withCategory = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute ml-5 bg-black text-white p-1 rounded-md w-16 text-center">
+          Veg
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 export default RestaurantCard;

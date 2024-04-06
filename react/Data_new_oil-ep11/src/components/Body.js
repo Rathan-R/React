@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withCategory } from "./RestaurantCard";
 
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -9,6 +9,7 @@ const Body = () => {
   const [ListOfRestaurants, setListOfRestaurant] = useState([]);
   const [filterdRes, setFilteredRes] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const VegCategory = withCategory(RestaurantCard);
   useEffect(() => {
     fetchData();
   }, []);
@@ -39,10 +40,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter flex items-center justify-center">
+      <div className="filter flex items-center justify-center max-sm:flex-col ">
         <div className="search-container m-4 p-4 ">
           <input
-            className="p-1 w-56 border border-solid border-slate-300 rounded-l-md text-lg outline-none"
+            className="p-1 w-56 border border-solid border-slate-300 rounded-l-md text-lg outline-none max-sm:w-[70%] p-1 text-sm"
             type="text"
             placeholder="search"
             value={searchText}
@@ -51,7 +52,7 @@ const Body = () => {
             }}
           />
           <button
-            className="bg-green-700 px-2 py-1 mr-2 rounded-r-md text-white text-lg border border-solid border-slate-400 "
+            className="bg-green-700 px-2 py-1 mr-2 rounded-r-md text-white text-lg border border-solid border-slate-400 max-sm:px-1 text-sm"
             onClick={() => {
               //filter the restaurant cards and update the ui
 
@@ -66,7 +67,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn bg-gray-300 w-40 h-10 text-grey rounded"
+          className="filter-btn bg-gray-300 w-40 h-10 text-grey rounded max-sm:px-1 text-sm"
           onClick={() => {
             setFilteredRes(
               ListOfRestaurants.filter((res) => res.info.avgRating > 4.2)
@@ -79,8 +80,11 @@ const Body = () => {
       <div className="res-container flex flex-wrap justify-center items-center">
         {filterdRes.map((res) => (
           <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
-            <RestaurantCard dataSet={res} />
-            <RestaurantCard dataSet={res} />
+            {res.info.veg ? (
+              <VegCategory dataSet={res} />
+            ) : (
+              <RestaurantCard dataSet={res} />
+            )}
           </Link>
         ))}
       </div>
