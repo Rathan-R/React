@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 const RestaurantCard = (props) => {
   const { dataSet } = props;
   const { name, cloudinaryImageId, cuisines, avgRating, costForTwo } =
     dataSet?.info;
   const { deliveryTime } = dataSet?.info?.sla;
-
+  const { loggedInUser } = useContext(UserContext);
   return (
-    <div className="m-4 p-4 w-60 bg-gray-100 rounded-lg hover:shadow-2xl hover:bg-slate-100 ">
+    <div
+      data-testid="resCard"
+      className="m-4 p-4 w-60 bg-gray-100 rounded-lg hover:shadow-2xl hover:bg-slate-100 overflow-hidden"
+    >
       <img
         className="res-logo min-w-full rounded-sm h-[150px]"
         src={CDN_URL + cloudinaryImageId}
@@ -30,11 +35,12 @@ const RestaurantCard = (props) => {
       </span>
       <h4 className="font-medium">{costForTwo.toUpperCase()}</h4>
       <h5 className="text-sm text-gray-500">{deliveryTime} minutes</h5>
+      <p>user:{loggedInUser}</p>
     </div>
   );
 };
 
-export const withCategory = (RestaurantCard) => {
+export const WithCategory = (RestaurantCard) => {
   return (props) => {
     return (
       <div>

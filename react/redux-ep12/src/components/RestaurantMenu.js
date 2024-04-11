@@ -6,7 +6,7 @@ import RestaurantMenuHead from "./RestaurantMenuHead";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
-function RestaurantMenu() {
+const RestaurantMenu = () => {
   const { rId } = useParams();
 
   const resInfo = useRestaurantMenu(rId);
@@ -38,6 +38,6 @@ function RestaurantMenu() {
       ))}
     </div>
   );
-}
+};
 
 export default RestaurantMenu;

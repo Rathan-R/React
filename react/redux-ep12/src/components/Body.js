@@ -1,18 +1,21 @@
-import RestaurantCard, { withCategory } from "./RestaurantCard";
+import RestaurantCard, { WithCategory } from "./RestaurantCard";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import MOCK_DATA from "./mocks/resBodyApiMockData.json";
 const Body = () => {
   //Local state variable
   const [ListOfRestaurants, setListOfRestaurant] = useState([]);
   const [filterdRes, setFilteredRes] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const VegCategory = withCategory(RestaurantCard);
+  const VegCategory = WithCategory(RestaurantCard);
   useEffect(() => {
     fetchData();
   }, []);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   const fetchData = async () => {
     const data = await fetch(
@@ -20,14 +23,20 @@ const Body = () => {
     );
 
     const json = await data.json();
+
+    // setListOfRestaurant(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
     setListOfRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      MOCK_DATA?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
+    // setFilteredRes(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
     setFilteredRes(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    console.log(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      MOCK_DATA?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
   };
 
@@ -43,8 +52,9 @@ const Body = () => {
       <div className="filter flex items-center justify-center max-sm:flex-col ">
         <div className="search-container m-4 p-4 ">
           <input
-            className="p-1 w-56 border border-solid border-slate-300 rounded-l-md text-lg outline-none max-sm:w-[70%] p-1 text-sm"
+            className="p-1 w-56 border border-solid border-slate-300 rounded-l-md text-lg outline-none max-sm:w-[70%]  text-sm"
             type="text"
+            data-testid="searchInput"
             placeholder="search"
             value={searchText}
             onChange={(e) => {
@@ -76,6 +86,14 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <input
+          type="text"
+          value={loggedInUser}
+          className="border border-black m-2 p-1 text-[20px]"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+        />
       </div>
       <div className="res-container flex flex-wrap justify-center items-center">
         {filterdRes.map((res) => (

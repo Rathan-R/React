@@ -1,11 +1,17 @@
+import React from "react";
 import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [btn, setBtn] = useState("Login");
   const { loggedInUser } = useContext(UserContext);
+
+  // selector is a hook==>now we are subscribing to our store using a selector
+  const cart = useSelector((store) => store.cart.items);
+
   return (
     <div className="flex justify-between bg-black text-white rounded-md  w-full h-16 sticky p-2  max-sm:w-full">
       <div className=" flex items-center">
@@ -15,7 +21,7 @@ const Header = () => {
         </h2>
       </div>
       <div className="nav-items">
-        <ul className="flex justify-center items-center h-full max-sm:hidden width-200 bg-black absolute top-0 right-0">
+        <ul className="flex justify-center items-center h-full max-sm: width-200 bg-black absolute top-0 right-0">
           <li className="flex">{useOnlineStatus() ? "🟢" : "🔴"}</li>
           <li className="px-2">
             <Link to="/">Home</Link>
@@ -29,7 +35,9 @@ const Header = () => {
           <li className="px-2">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-2">Cart</li>
+          <li className="px-2 font-bold text-xl">
+            <Link to="/cart">cart-({cart.length} items)</Link>
+          </li>
           <button
             className="bg-blue-700 px-2 py-1 mr-2 rounded-sm"
             onClick={() => {
