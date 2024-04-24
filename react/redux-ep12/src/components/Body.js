@@ -49,10 +49,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter flex items-center justify-center max-sm:flex-col ">
+      <div className="filter flex items-center justify-center flex-col md:flex-row ">
         <div className="search-container m-4 p-4 ">
           <input
-            className="p-1 w-56 border border-solid border-slate-300 rounded-l-md text-lg outline-none max-sm:w-[70%]  text-sm"
+            className="p-1 w-40 border border-solid border-slate-300 rounded-l-md text-lg outline-none max-sm:w-[70%]  text-sm"
             type="text"
             data-testid="searchInput"
             placeholder="search"
@@ -62,7 +62,7 @@ const Body = () => {
             }}
           />
           <button
-            className="bg-green-700 px-2 py-1 mr-2 rounded-r-md text-white text-lg border border-solid border-slate-400 max-sm:px-1 text-sm"
+            className="bg-green-700 px-1 py-1 mr-2 rounded-r-md text-white text-sm border border-solid border-slate-400 "
             onClick={() => {
               //filter the restaurant cards and update the ui
 
@@ -88,8 +88,9 @@ const Body = () => {
         </button>
         <input
           type="text"
+          data-testid="loggedInUserName"
           value={loggedInUser}
-          className="border border-black m-2 p-1 text-[20px]"
+          className="border border-black m-2 p-1 text-[20px] max-sm:hidden"
           onChange={(e) => {
             setUserName(e.target.value);
           }}

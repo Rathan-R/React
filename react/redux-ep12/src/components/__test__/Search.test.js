@@ -50,3 +50,17 @@ test("Should filter to rated restaurants", async () => {
   const cardsAfterSearch = screen.getAllByTestId("resCard");
   expect(cardsAfterSearch.length).toBe(10);
 });
+
+test("Should check loggedinuser name", async () => {
+  await act(async () =>
+    render(
+      <BrowserRouter>
+        <Body />
+      </BrowserRouter>
+    )
+  );
+
+  const loggedInUser = screen.getByTestId("loggedInUserName");
+  fireEvent.change(loggedInUser, { target: { value: "Default user" } });
+  expect(loggedInUser.value).toBe("Default user");
+});
